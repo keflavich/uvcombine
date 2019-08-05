@@ -1431,7 +1431,7 @@ def feather_compare(hires, lores,
         pl.suptitle("{0} - {1}".format(SAS,LAS))
         pl.subplot(2,2,1)
         pl.plot(np.abs(fft_hi)[mask], np.abs(fft_lo_deconvolved)[mask], '.')
-        mm = [np.abs(fft_hi)[mask].min(), np.abs(fft_hi)[mask].max()]
+        mm = np.array([np.abs(fft_hi)[mask].min(), np.abs(fft_hi)[mask].max()])
         pl.plot(mm, mm, 'k--')
         pl.plot(mm, mm/sclip[1], 'k:')
         pl.xlabel("High-resolution")
