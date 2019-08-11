@@ -6,6 +6,7 @@ import pylab as pl
 def compare_parameters_feather_simple(im, im_hi, im_low, lowresfwhm, pixscale,
                                       suffix="", replacement_threshold=0.5,
                                       psd_axlims=(1e-3,1,10,5e3),
+                                      imshow_kwargs={},
                                      ):
     """
     Create diagnostic plots for different simulated feathers
@@ -63,15 +64,17 @@ def compare_parameters_feather_simple(im, im_hi, im_low, lowresfwhm, pixscale,
                 ax1.loglog(pfreq_resid, ppow_resid, linestyle=ls, linewidth=lw, color='b', alpha=0.75)
                 ax1.axis(psd_axlims)
                 ax1.set_title(name)
+                ax1.set_xlabel("Frequency")
+                ax1.set_ylabel("Power")
 
                 ax2 = fig2.add_subplot(3, 3, plotnum)
-                ax2.imshow(combo, interpolation='none', origin='lower')
+                ax2.imshow(combo, interpolation='none', origin='lower', **imshow_kwargs)
                 ax2.set_title(name)
                 ax2.set_xticklabels([])
                 ax2.set_yticklabels([])
 
                 ax3 = fig3.add_subplot(3, 3, plotnum)
-                ax3.imshow(resid, interpolation='none', origin='lower')
+                ax3.imshow(resid, interpolation='none', origin='lower', **imshow_kwargs)
                 ax3.set_title(name)
                 ax3.set_xticklabels([])
                 ax3.set_yticklabels([])
@@ -89,13 +92,13 @@ def compare_parameters_feather_simple(im, im_hi, im_low, lowresfwhm, pixscale,
     ax1.set_title("Original Image")
 
     ax2 = fig2.add_subplot(3, 3, plotnum)
-    ax2.imshow(im, interpolation='none', origin='lower')
+    ax2.imshow(im, interpolation='none', origin='lower', **imshow_kwargs)
     ax2.set_title("Original Image")
     ax2.set_xticklabels([])
     ax2.set_yticklabels([])
 
     ax3 = fig3.add_subplot(3, 3, plotnum)
-    ax3.imshow(im, interpolation='none', origin='lower')
+    ax3.imshow(im, interpolation='none', origin='lower', **imshow_kwargs)
     ax3.set_title("Original Image")
     ax3.set_xticklabels([])
     ax3.set_yticklabels([])
